@@ -38,6 +38,8 @@ This is all possible inside `todo.md`.
 
 ## `todo.md` format rules
 
+![todo.md format illustration](todo_md_description.jfif)
+
 Your `todo.md` is a plain text Markdown file. To take advantage of structured task metadata like priority, projects, context, creation, and completion date, there are a few simple but flexible file format rules.
 
 Philosophically, the `todo.md` file format has three goals:
