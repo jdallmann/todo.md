@@ -1,198 +1,197 @@
-# todo.txt format
-[![Gitter](https://img.shields.io/gitter/room/todotxt/todotxt.svg)](https://gitter.im/todotxt/todotxt)
+# todo.md format
 
-[English](./README.md) | [Korean (한국어)](./README.ko.md)
+A complete primer on the whys and hows of `todo.md`, a Markdown-friendly adaptation of the classic [todo.txt](https://github.com/todotxt/todo.txt) format.
 
-A complete primer on the whys and hows of todo.txt.
+The first and most important rule of `todo.md`:
 
-The first and most important rule of todo.txt:
+> A single task line in your `todo.md` file represents a single task, organized cleanly under Markdown project headers.
 
-> A single line in your todo.txt text file represents a single task.
+## Why plain text and Markdown?
 
+Plain text is software and operating system agnostic. It's searchable, portable, lightweight, and easily manipulated. By adapting the `todo.txt` format to standard Markdown (`todo.md`), your task list remains completely portable in plain text while gaining native support for interactive checkboxes and collapsible section headers in any standard Markdown viewer or editor (like GitHub, Obsidian, Notion, or VS Code). 
 
-## Why plain text?
-
-Plain text is software and operating system agnostic. It's searchable, portable, lightweight, and easily manipulated. It's unstructured. It works when someone else's web server is down or your Outlook .PST file is corrupt. There's no exporting and importing, no databases or tags or flags or stars or prioritizing or _insert company name here_-induced rules on what you can and can't do with it.
-
+It works when someone else's web server is down or your database file is corrupt. There's no exporting and importing, no proprietary databases, and no company-induced rules on what you can and can't do with it.
 
 ## The 3 axes of an effective todo list
 
-Using special notation in todo.txt, you can create a list that's sliceable by 3 key axes.
-
+Using special notation and Markdown structure in `todo.md`, you can create a list that's sliceable by 3 key axes:
 
 ### Priority
-Your todo list should be able to tell you what's the next most important thing for you to get done - either by project or by context or overall. You can optionally assign tasks a priority that'll bubble them up to the top of the list.
 
+Your todo list should be able to tell you what's the next most important thing for you to get done—either by project or by context or overall. You can optionally assign tasks a priority that'll bubble them up to the top of a project list when sorted alphabetically.
 
 ### Project
-The only way to move a big project forward is to tackle a small subtask associated with it. Your `todo.txt` should be able to list out all the tasks specific to a project.
 
-In order to move along a project like "Cleaning out the garage," my task list should give me the next logical action to take in order to move that project along. "Clean out the garage" isn't a good todo item; but "Call Goodwill to schedule pickup" in the "Clean out garage" project is.
+The only way to move a big project forward is to tackle a small subtask associated with it. Your `todo.md` groups all the tasks specific to a project under a level-2 Markdown header (`## Project`).
 
+In order to move along a project like "Cleaning out the garage," my task list should give me the next logical action to take in order to move that project along. "Clean out the garage" isn't a good todo item; but "Call Goodwill to schedule pickup" under the `## GarageSale` (or `## Clean out garage`) header is.
 
 ### Context
-[Getting Things Done](https://en.wikipedia.org/wiki/Getting_Things_Done) author David Allen suggests splitting up your task lists by context - ie, the place and situation where you'll work on the job. Messages that you need to send go in the `@email` context; calls to be made `@phone`, household projects `@home`.
 
-That way, when you've got a few minutes in the car with your cell phone, you can easily check your `@phone` tasks and make a call or two while you have the opportunity.
+*Getting Things Done* author David Allen suggests splitting up your task lists by context—i.e., the place and situation where you'll work on the job. Messages that you need to send go in the `@email` context; calls to be made `@phone`, household projects `@home`.
 
-This is all possible inside `todo.txt`.
+That way, when you've got a few minutes in the car with your cell phone, you can easily search your `@phone` tasks and make a call or two while you have the opportunity.
 
+This is all possible inside `todo.md`.
 
+---
 
-## `todo.txt` format rules
+## `todo.md` format rules
 
-<img src="./description.svg" width="100%" height="500">
+Your `todo.md` is a plain text Markdown file. To take advantage of structured task metadata like priority, projects, context, creation, and completion date, there are a few simple but flexible file format rules.
 
-Your `todo.txt` is a plain text file. To take advantage of structured task metadata like priority, projects, context, creation, and completion date, there are a few simple but flexible file format rules.
+Philosophically, the `todo.md` file format has three goals:
 
-Philosophically, the `todo.txt` file format has two goals:
+1. The file contents should be human-readable without requiring any tools other than a plain text viewer or editor.
+2. The file should render natively as a clean, interactive task list with grouped sections in any standard Markdown viewer.
+3. A user can manipulate the file contents in a plain text editor in sensible, expected ways. For example, a text editor that can sort lines alphabetically within a project section should be able to sort your task list in a meaningful way.
 
-- The file contents should be human-readable without requiring any tools other than a plain text viewer or editor.
-- A user can manipulate the file contents in a plain text editor in sensible, expected ways. For example, a text editor that can sort lines alphabetically should be able to sort your task list in a meaningful way.
-
-These two goals are why, for example, lines start with priority and/or dates, so that they are easily sorted by priority or time, and completed items are marked with an `x`, which both sorts at the bottom of an alphabetical list and looks like a filled-in checkbox.
+These goals are why tasks begin with standard Markdown checkboxes (`- [ ] ` and `- [x] `), followed immediately by priority and/or dates. When sorting lines within a project section, incomplete tasks (`- [ ]`) naturally sort above completed tasks (`- [x]`), and prioritized tasks sort by importance and time.
 
 Here are the rest.
 
+### Projects: Structural Rule
 
-## Incomplete Tasks: 3 Format Rules
+Unlike `todo.txt` which uses inline `+Project` tags, `todo.md` groups tasks together under Markdown level-2 headers (`## Project`). 
 
-The beauty of todo.txt is that it's completely unstructured; the fields you can attach to each task are only limited by your imagination. To get started, use special notation to indicate task context (e.g. `@phone` ), project (e.g. `+GarageSale` ) and priority (e.g. `(A)` ).
+- **Projects are defined by `## ProjectName` headers.** All task lines following a `## Project` header belong to that project until the next `##` header appears.
+- Tasks that do not belong to a specific project can be placed at the top of the file before the first `##` header, or under a general header such as `## General` or `## Inbox`.
+- **Optional sub-projects or inline tags:** If a task belongs to multiple projects, it should live under its primary `## Project` header, or optionally reference secondary projects inline if your workflow requires it.
 
-A todo.txt file might look like the following:
+### Incomplete Tasks: 4 Format Rules
 
-```
-(A) Thank Mom for the meatballs @phone
-(B) Schedule Goodwill pickup +GarageSale @phone
-Post signs around the neighborhood +GarageSale
-@GroceryStore pies
+The beauty of `todo.md` is that it's flexible; the fields you can attach to each task are only limited by your imagination. To get started, group tasks under `## Project` headers, start each task with `- [ ] `, and use special notation to indicate task context (e.g., `@phone`) and priority (e.g., `(A)`).
+
+A `todo.md` file might look like the following:
+
+```markdown
+- [ ] (A) Thank Mom for the meatballs @phone
+- [ ] @GroceryStore pies
+
+## GarageSale
+- [ ] (B) Schedule Goodwill pickup @phone
+- [ ] Post signs around the neighborhood
 ```
 
 A search and filter for the `@phone` contextual items would output:
 
-```
-(A) Thank Mom for the meatballs @phone
-(B) Schedule Goodwill pickup +GarageSale @phone
-```
-
-To just see the `+GarageSale` project items would output:
-
-```
-(B) Schedule Goodwill pickup +GarageSale @phone
-Post signs around the neighborhood +GarageSale
+```markdown
+- [ ] (A) Thank Mom for the meatballs @phone
+- [ ] (B) Schedule Goodwill pickup @phone
 ```
 
-There are three formatting rules for current todo's.
+To just see the `GarageSale` project items, you simply look under the `## GarageSale` header in your file or Markdown viewer:
 
-### Rule 1: If priority exists, it ALWAYS appears first.
+```markdown
+## GarageSale
+- [ ] (B) Schedule Goodwill pickup @phone
+- [ ] Post signs around the neighborhood
+```
 
-The priority is an uppercase character from A-Z enclosed in parentheses and followed by a space.
+There are four formatting rules for current todos:
+
+#### Rule 1: Every incomplete task starts with `- [ ] `
+
+Every incomplete task must begin on a new line with a hyphen, a space, an open bracket, a single space, a close bracket, and a space (`- [ ] `). This allows standard Markdown viewers to render an unchecked checkbox.
+
+#### Rule 2: If priority exists, it ALWAYS appears first after the checkbox.
+
+The priority is an uppercase character from A–Z enclosed in parentheses and followed by a space, placed directly after `- [ ] `.
 
 This task has a priority:
 
-```
-(A) Call Mom
-```
-
-These tasks do not have any priorities:
-
-```
-Really gotta call Mom (A) @phone @someday
-(b) Get back to the boss
-(B)->Submit TPS report
+```markdown
+- [ ] (A) Call Mom
 ```
 
+These tasks do **not** have any priorities:
 
-### Rule 2: A task's creation date may optionally appear directly after priority and a space.
+```markdown
+- [ ] Really gotta call Mom (A) @phone @someday
+- [ ] (b) Get back to the boss
+- [ ] (B)->Submit TPS report
+```
 
-If there is no priority, the creation date appears first. If the creation date exists, it should be in the format `YYYY-MM-DD`.
+#### Rule 3: A task's creation date may optionally appear directly after priority and a space.
+
+If there is no priority, the creation date appears directly after the `- [ ] ` checkbox and a space. If the creation date exists, it should be in the format `YYYY-MM-DD`.
 
 These tasks have creation dates:
 
-```
-2011-03-02 Document +TodoTxt task format
-(A) 2011-03-02 Call Mom
+```markdown
+## TodoMd
+- [ ] 2011-03-02 Document task format
+- [ ] (A) 2011-03-02 Call Mom
 ```
 
 This task doesn't have a creation date:
 
+```markdown
+- [ ] (A) Call Mom 2011-03-02
 ```
-(A) Call Mom 2011-03-02
-```
 
+#### Rule 4: Contexts may appear anywhere in the line after priority/prepended date.
 
-### Rule 3: Contexts and Projects may appear anywhere in the line _after_ priority/prepended date.
+A context is preceded by a single space and an at-sign (`@`). A context contains any non-whitespace character. A task may have zero, one, or more than one contexts included in it.
 
-- A *context* is preceded by a single space and an at-sign (`@`).
-- A *project* is preceded by a single space and a plus-sign (`+`).
-- A *project* or *context* contains any non-whitespace character.
-- A *task* may have zero, one, or more than one *projects* and *contexts* included in it.
+For example, this task is under the `## Family` project and is part of the `@iphone` and `@phone` contexts:
 
-For example, this task is part of the `+Family` and `+PeaceLoveAndHappiness` projects as well as the `@iphone` and `@phone` contexts:
-
-```
-(A) Call Mom +Family +PeaceLoveAndHappiness @iphone @phone
+```markdown
+## Family
+- [ ] (A) Call Mom @iphone @phone
 ```
 
 This task has no contexts in it:
 
-```
-Email SoAndSo at soandso@example.com
-```
-
-This task has no projects in it:
-
-```
-Learn how to add 2+2
+```markdown
+- [ ] Email SoAndSo at soandso@example.com
 ```
 
+---
 
-
-## Complete Tasks: 2 Format Rules
+### Complete Tasks: 2 Format Rules
 
 Two things indicate that a task has been completed.
 
+#### Rule 1: A completed task starts with `- [x] `
 
-### Rule 1: A completed task starts with a lowercase x character (`x`).
-
-If a task starts with an `x` (case-sensitive and lowercase) followed directly by a space, it is marked as complete.
+If a task starts with `- [x] ` (a hyphen, space, open bracket, lowercase `x`, close bracket, and space), it is marked as complete. *(Note: `- [x]` without a leading space inside the brackets may also be tolerated by some parsers, though `- [x] ` is standard Markdown).*
 
 This is a complete task:
 
-```
-x 2011-03-03 Call Mom
-```
-
-These are not complete tasks.
-
-```
-xylophone lesson
-X 2012-01-01 Make resolutions
-(A) x Find ticket prices
+```markdown
+- [x] 2011-03-03 Call Mom
 ```
 
-We use a lowercase x so that completed tasks sort to the bottom of the task list using standard sort tools.
+These are **not** complete tasks:
 
+```markdown
+- [ ] xylophone lesson
+x 2012-01-01 Make resolutions
+- [ ] (A) x Find ticket prices
+```
 
-### Rule 2: The date of completion appears directly after the x, separated by a space.
+We use `- [x] ` so that Markdown viewers render a checked box, and because `[x]` sorts below `[ ]` in ASCII alphabetical order, meaning completed tasks sort to the bottom of a project's task list using standard sort tools.
+
+#### Rule 2: The date of completion appears directly after the `- [x] `, separated by a space.
 
 For example:
 
+```markdown
+## TodoTxtTouch
+- [x] 2011-03-02 2011-03-01 Review Tim's pull request @github
 ```
-x 2011-03-02 2011-03-01 Review Tim's pull request +TodoTxtTouch @github
-```
 
-If you’ve prepended the creation date to your task, on completion it will appear directly after the completion date. This is so your completed tasks sort by date using standard sort tools. Many Todo.txt clients discard priority on task completion. To preserve it, use the `key:value` format described below (e.g. `pri:A`)
+If you've prepended the creation date to your task, on completion it will appear directly after the completion date. This is so your completed tasks sort chronologically by completion date using standard sort tools. Many clients discard priority on task completion so that completed tasks sort cleanly together. To preserve it, use the `key:value` format described below (e.g., `pri:A`).
 
-With the completed date (required), if you've used the prepended date (optional), you can calculate how many days it took to complete a task.
+With the completed date (optional or required depending on your parser), if you've used the prepended creation date, you can calculate how many days it took to complete a task.
 
+---
 
-
-## Additional File Format Definitions
+### Additional File Format Definitions
 
 Tool developers may define additional formatting rules for extra metadata.
 
-Developers should use the format `key:value` to define additional metadata (e.g. `due:2010-01-02` as a due date).
+Developers should use the format `key:value` to define additional metadata (e.g., `due:2010-01-02` as a due date).
 
 Both `key` and `value` must consist of non-whitespace characters, which are not colons. Only one colon separates the `key` and `value`.
-
